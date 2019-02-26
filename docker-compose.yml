@@ -1,0 +1,21 @@
+version: "3.1"
+
+services:
+  ml-install:
+    container_name: ml-install
+    image: ml-install
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./app:/var/www/
+    command: composer install --dev
+  
+  ml-tester:
+    container_name: ml-tester
+    image: ml-install
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./app:/var/www/
