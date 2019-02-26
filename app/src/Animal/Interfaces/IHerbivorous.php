@@ -1,6 +1,8 @@
 <?php
 namespace Animal\Interfaces;
 
+use Animal\Plant;
+
 interface IHerbivorous {
-  public function eat($vegetable);
+  public function eat(Plant $vegetable);
 }

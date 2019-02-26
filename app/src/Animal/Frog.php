@@ -3,9 +3,13 @@ namespace Animal;
 
 use Animal\Interfaces\IAlive;
 use Animal\Interfaces\IHerbivorous;
+use Animal\Interfaces\ICarnivorous;
+
+use Animal\Plant;
 
 class Frog implements IAlive, IHerbivorous {
-  private $isAlive;
+  
+  public $isAlive;
 
   public function __construct(){
     $this->isAlive=true;
@@ -13,11 +17,13 @@ class Frog implements IAlive, IHerbivorous {
 
   public function toBeKilled($killer){
     $this->isAlive=false;
+    echo "Frog is dead!";
     $killer->toBeKilled($this);
   }
-  public function eat($vegetable){
+  public function eat(Plant $vegetable){
     if($this->isAlive){
-      echo "nomnomnom!";
+      echo "Nomnomnom!";
+      $vegetable->toBeKilled($this);
     }
   }
 }
