@@ -26,12 +26,9 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Example\\": "src/Example"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"NeuralNetwork\\Tests\\": "tests"
+			"Example\\": "src/Example",
+			"Animal\\": "src/Animal",
+			"Animal\\Interfaces\\": "src/Animal/Interfaces"
 		}
 	},
 	"require": {

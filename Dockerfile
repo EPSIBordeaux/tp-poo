@@ -26,7 +26,7 @@ RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url 
         && composer --ansi --version --no-interaction \
         && rm -rf /tmp/* /tmp/.htaccess
 
-RUN composer install --no-ansi --no-dev --no-interaction --no-scripts --optimize-autoloader
+RUN composer install --no-ansi --no-dev --no-interaction --no-scripts --optimize-autoloader --ignore-platform-reqs
 
 ENV ENVIRONMENT PROD
 
