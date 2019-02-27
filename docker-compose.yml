@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   tp-poo:
-    container_name: tp-poo
+    container_name: tp-poo-intaller
     image: tp-poo
     build:
       context: .
