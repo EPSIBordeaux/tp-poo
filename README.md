@@ -8,5 +8,5 @@ docker-compose up -d
 
 Pour lancer les tests unitaires
 ```
-docker exec -it ml-tester composer test
+docker exec -it tp-poo-tester composer test
 ```

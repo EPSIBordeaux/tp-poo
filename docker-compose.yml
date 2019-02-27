@@ -1,9 +1,9 @@
 version: "3.1"
 
 services:
-  ml-install:
-    container_name: ml-install
-    image: ml-install
+  tp-poo:
+    container_name: tp-poo
+    image: tp-poo
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -11,9 +11,9 @@ services:
       - ./app:/var/www/
     command: composer install --dev
   
-  ml-tester:
-    container_name: ml-tester
-    image: ml-install
+  tp-poo-tester:
+    container_name: tp-poo-tester
+    image: tp-poo
     build:
       context: .
       dockerfile: ./Dockerfile

@@ -2,16 +2,20 @@ FROM php:7.2-apache
 
 RUN apt-get update && apt-get install -y \
         libpng-dev \
-        git subversion mercurial bash patch php-zip
+        git subversion mercurial bash patch \
+        libzip-dev \
+        zip 
 
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-enable pcntl
+RUN docker-php-ext-configure zip --with-libzip \
+        && docker-php-ext-install zip \
+        && docker-php-ext-enable zip
+
+RUN docker-php-ext-install pcntl &&  docker-php-ext-enable pcntl
+RUN docker-php-ext-install gd &&  docker-php-ext-enable gd
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 ENV COMPOSER_VERSION 1.7.2
-
-WORKDIR /var/www/
 
 RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/b107d959a5924af895807021fcef4ffec5a76aa9/web/installer \
         && php -r " \
@@ -26,7 +30,7 @@ RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url 
         && composer --ansi --version --no-interaction \
         && rm -rf /tmp/* /tmp/.htaccess
 
-RUN composer install --no-ansi --no-dev --no-interaction --no-scripts --optimize-autoloader --ignore-platform-reqs
-
-ENV ENVIRONMENT PROD
+WORKDIR /var/www/
+COPY ./app /var/www
+RUN composer install --no-ansi --no-dev --no-interaction --no-scripts --optimize-autoloader
 
