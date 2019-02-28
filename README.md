@@ -15,6 +15,6 @@
 3. Lancer les tests unitaires
 
     ```
-    docker exec -it tp-poo composer test
+    docker exec tp-poo composer test
     ```
 
