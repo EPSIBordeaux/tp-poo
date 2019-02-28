@@ -1,5 +1,5 @@
 {
-	"name": "EPSIBordeaux/tp-poo",
+	"name": "epsi-bordeaux/tp-poo",
 	"description": "TP sur le cours de POO avec PHP",
 	"homepage": "https://github.com/EPSIBordeaux/tp-poo",
 	"license": "MIT",
@@ -21,7 +21,7 @@
 	],
 	"scripts": {
 		"test": [
-			"phpunit"
+			"./vendor/bin/phpunit"
 		]
 	},
 	"autoload": {
