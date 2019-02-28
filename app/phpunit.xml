@@ -10,7 +10,7 @@
 	enforceTimeLimit="true"
 	verbose="true"
 	>
-	<testsuite name="PHP Neural network">
+	<testsuite name="TP POO">
 		<directory>tests</directory>
 	</testsuite>
 
