@@ -18,3 +18,7 @@
     docker exec tp-poo composer test
     ```
 
+## Potentielles erreurs
+
+1. `Cannot delete /some-random-folder/.git/truc.idx`
+    - Solution : supprimer le dossier `vendor` et refaire la commande d'installation.
