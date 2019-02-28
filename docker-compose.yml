@@ -1,21 +1,12 @@
 version: "3.1"
 
 services:
-  tp-poo-intaller:
-    container_name: tp-poo-intaller
+  tp-poo:
+    container_name: tp-poo
     image: tp-poo
     build:
       context: .
       dockerfile: ./Dockerfile
     volumes:
       - ./app:/var/www/
-    command: composer install --dev
-  
-  tp-poo-tester:
-    container_name: tp-poo-tester
-    image: tp-poo
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    volumes:
-      - ./app:/var/www/
+

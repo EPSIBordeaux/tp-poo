@@ -1,12 +1,20 @@
 # TP n°1 sur la POO avec PHP
 
-Demarrer le projet 
+1. Démarrer le projet 
 
-```
-docker-compose up -d
-```
+    ```
+    docker-compose up -d
+    ```
 
-Pour lancer les tests unitaires
-```
-docker exec -it tp-poo-tester composer test
-```
+2. Installer les dépendances composer
+
+    ```
+    docker exec tp-poo composer install
+    ```
+
+3. Lancer les tests unitaires
+
+    ```
+    docker exec -it tp-poo-tester composer test
+    ```
+
