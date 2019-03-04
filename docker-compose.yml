@@ -1,6 +1,16 @@
 version: "3.1"
 
 services:
+  tp-poo-intaller:
+    container_name: tp-poo-intaller
+    image: tp-poo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./app:/var/www/
+    command: composer install --no-interaction --optimize-autoloader
+
   tp-poo:
     container_name: tp-poo
     image: tp-poo
@@ -9,4 +19,3 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./app:/var/www/
-
