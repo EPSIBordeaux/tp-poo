@@ -9,10 +9,10 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./app:/var/www/
-    command: composer install --dev
-  
-  tp-poo-tester:
-    container_name: tp-poo-tester
+    command: composer install --no-interaction --optimize-autoloader
+
+  tp-poo:
+    container_name: tp-poo
     image: tp-poo
     build:
       context: .
