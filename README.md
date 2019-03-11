@@ -30,3 +30,11 @@ Pré-requis : Virtualbox.
 3. Lancer Git Bash
 
 4. Les commandes `docker` et `docker-compose` devraient désormais être accessible
+
+## Tout supprimer et tout recommencer
+
+1. `docker rm $(docker ps -aq) -f`
+2. `docker rmi $(docker images -q)`
+3. `docker volumes prune -y` (yes)
+4. `docker network prune`
+5. `docker system prune`
