@@ -14,8 +14,5 @@ ENV COMPOSER_HOME /tmp
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN usermod -u 1000 www-data
-
-WORKDIR /var/www/
 COPY ./app /var/www
-RUN chown -R www-data:www-data /var/www
+WORKDIR /var/www/
