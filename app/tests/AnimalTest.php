@@ -2,17 +2,22 @@
 
 namespace Animal\Tests;
 
+use Animal\Interfaces\ICarnivorous;
+use Animal\Interfaces\IHerbivorous;
 use Animal\Pig;
 use Animal\Frog;
 use Animal\Dog;
 use Animal\Plant;
 
+use Error;
 use PHPUnit\Framework\TestCase;
 
 class AnimalTest extends TestCase {
 	
 	protected $pig;
+    /** @var Frog $frog */
 	protected $frog;
+    /** @var Dog $dog */
 	protected $dog;
 	protected $plant;
 
@@ -24,8 +29,8 @@ class AnimalTest extends TestCase {
 	}
 
 	public function testHerbivorusCanEatVegetables() {
-		$this->assertInstanceOf('Animal\Interfaces\IHerbivorous', $this->frog);
-		$this->assertNotInstanceOf('Animal\Interfaces\ICarnivorous', $this->frog);
+		$this->assertInstanceOf(IHerbivorous::class, $this->frog);
+		$this->assertNotInstanceOf(ICarnivorous::class, $this->frog);
 		$this->expectOutputString('Nomnomnom!Plant is dead!');
 		$this->frog->eat($this->plant);
 		$this->assertFalse($this->plant->isAlive);
@@ -33,34 +38,34 @@ class AnimalTest extends TestCase {
 
 	/**
 	 * @expectedException Error
-	 * @expectedExceptionMessage Argument 1 passed to Animal\Frog::eat() must be an instance of Animal\Plant, instance of Animal\Dog given, called in /var/www/tests/AnimalTest.php on line 41
+	 * @expectedExceptionMessage Argument 1 passed to Animal\Frog::eat() must be an instance of Animal\Plant, instance of Animal\Dog given, called in /var/www/tests/AnimalTest.php on line 47
 	 */
 	public function testHerbivorusCantEatMeat() {
-		$this->assertInstanceOf('Animal\Interfaces\IHerbivorous', $this->frog);
-		$this->assertNotInstanceOf('Animal\Interfaces\ICarnivorous', $this->frog);
+		$this->assertInstanceOf(IHerbivorous::class, $this->frog);
+		$this->assertNotInstanceOf(ICarnivorous::class, $this->frog);
+        $this->assertNotFalse($this->dog->isAlive);
 		$this->frog->eat($this->dog);
-		$this->assertNotFalse($this->dog->isAlive);
 	}
 
 	public function testPigIsHomnivorus() {
 		// Ici, la classe Pig peut être considérée comme Herbivore ET Carnivore
-		$this->assertInstanceOf('Animal\Pig', $this->pig);
-		$this->assertInstanceOf('Animal\Interfaces\IHerbivorous', $this->pig);
-		$this->assertInstanceOf('Animal\Interfaces\ICarnivorous', $this->pig);
+		$this->assertInstanceOf(Pig::class, $this->pig);
+		$this->assertInstanceOf(IHerbivorous::class, $this->pig);
+		$this->assertInstanceOf(ICarnivorous::class, $this->pig);
 	}
 
 	public function testFrogIsHerbivorus() {
 		// Ici, la classe Frog peut être considérée comme Herbivore seulement
-		$this->assertInstanceOf('Animal\Frog', $this->frog);
-		$this->assertInstanceOf('Animal\Interfaces\IHerbivorous', $this->frog);
-		$this->assertNotInstanceOf('Animal\Interfaces\ICarnivorous', $this->frog);
+		$this->assertInstanceOf(Frog::class, $this->frog);
+		$this->assertInstanceOf(IHerbivorous::class, $this->frog);
+		$this->assertNotInstanceOf(ICarnivorous::class, $this->frog);
 	}
 
 	public function testDogIsCarnivorous() {
 		// Ici, la classe Frog peut être considérée comme Carnivore seulement
-		$this->assertInstanceOf('Animal\Dog', $this->dog);
-		$this->assertInstanceOf('Animal\Interfaces\ICarnivorous', $this->dog);
-		$this->assertNotInstanceOf('Animal\Interfaces\IHerbivorous', $this->dog);
+		$this->assertInstanceOf(Dog::class, $this->dog);
+		$this->assertInstanceOf(ICarnivorous::class, $this->dog);
+		$this->assertNotInstanceOf(IHerbivorous::class, $this->dog);
 	}
 
 	public function testDogNomFrog() {
